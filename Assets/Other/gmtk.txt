@@ -1,0 +1,14 @@
+################################################################
+#Pour les dès: Catégorie;Nom;Coût;Variance                     #
+#Pour les faces : Face;Nb-ID+Nb-ID							   #
+#Ex: 1;1RW+1RS = Face 1 invoque 1 range weak et 1 range strong #
+################################################################
+Invoke;ChaosInvoke;1;5
+1;1RW
+2;1MW
+3;1WW
+4;1RS
+5;1MS
+6;1WS
+-
+Invoke;RangeInvoke;1
