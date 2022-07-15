@@ -6,10 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
     //PROVISOIRE
     public GameObject diceInHand;
-    
 
     public void Awake(){
         instance = this;
