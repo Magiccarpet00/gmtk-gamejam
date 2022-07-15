@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Hello");
+    public static GameManager instance;
+
+
+    //PROVISOIRE
+    public GameObject diceInHand;
+    
+
+    public void Awake(){
+        instance = this;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+      
+    }
+
+    
     void Update()
     {
         
