@@ -27,10 +27,12 @@ public class Dice
     }
 
     // When a dice is threw, resolve his effect by randomly choosing a face and check how it turns out
-    public DiceFace Resolve()
+    public DiceFace Roll()
     {
         var random = new System.Random();
+
         int faceIndex = random.Next(FACES_NUMBER);
+        Debug.Log("Rolled an " + faceIndex + " !");
         DiceFace picked = faces[faceIndex];
         return picked;
     }

@@ -36,9 +36,9 @@ public class PlayerHand
         return picked;
     }
 
-    public void PlayDice(Dice d)
+    public void Roll(Dice d)
     {
-        d.Resolve();
+        d.Roll();
         pool.Add(d);
         hand.Remove(d);
     }
