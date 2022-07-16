@@ -5,17 +5,17 @@ using System;
 
 public class PlayerHand
 {
-    List<Dice> hand; // Playable dices 
-    List<Dice> pool; // Dices that can be drew
+    public List<Dice> hand; // Playable dices 
+    public List<Dice> pool; // Dices that can be drew
     public int MAX_HAND_SIZE = 4;
 
-    PlayerHand()
+    public PlayerHand()
     {
         hand = new List<Dice>();
         pool = new List<Dice>();
     }
 
-    void Mulligan()
+    public void Mulligan()
     {
         for (int i = 0; i < MAX_HAND_SIZE; i++)
         {
@@ -23,7 +23,7 @@ public class PlayerHand
         }
     }
 
-    Dice Draw(bool delFromPool)
+    public Dice Draw(bool delFromPool)
     {
         // be careful about perma delete from pool. could be handled through parameters
         var random = new System.Random();
@@ -34,6 +34,22 @@ public class PlayerHand
             pool.RemoveAt(index);
         }
         return picked;
+    }
+
+    public void DebugInfo()
+    {
+        String infos = "";
+        infos += "HAND INFOS\n";
+        foreach (Dice item in hand)
+        {
+            infos += item.name + "\n";
+        }
+        infos+="POOL INFOS\n";
+        foreach (Dice item in pool)
+        {
+            infos+=item.name+"\n";
+        }
+        Debug.Log(infos);
     }
 }
 
