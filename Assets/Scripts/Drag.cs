@@ -9,13 +9,8 @@ public class Drag : MonoBehaviour
     public GameObject sprite;
     public Collider2D collider2d;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform diceSlot;
 
-    // Update is called once per frame
     void Update()
     {
         if (onDrag)
@@ -28,19 +23,34 @@ public class Drag : MonoBehaviour
 
     void OnMouseUp()
     {
-        if(!onDrag){
+        if(!onDrag)
+        {
             GameManager.instance.diceInHand = this.gameObject;
             onDrag = true;
-            collider2d.enabled = false;
             Debug.Log("j'ai un dé");
         }
-        else{
-            Disapared();
+        else
+        {
+            if(GameManager.instance.laneSelected != null){
+                GameManager.instance.laneSelected.GetComponent<Lane>().DiceRoll(this.gameObject);
+                Disapared();
+            }
+            else
+            {
+                ReplaceDice();
+            }
             Debug.Log("je lache le dé");
         }
     }
 
     public void Disapared(){
         sprite.SetActive(false);
+    }
+
+    private void ReplaceDice()
+    {
+        onDrag = false;
+
+        this.transform.position = new Vector3(diceSlot.position.x, diceSlot.position.y, 0f);
     }
 }

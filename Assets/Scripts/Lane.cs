@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class Lane : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("hello");
+        if (col.tag == "Dice"){
+            //TODO mettre un petit over sur les lanes 
+            Debug.Log("je suis la lane");
+
+            GameManager.instance.laneSelected = this.gameObject;
+        }
     }
 
-    void OnMouseUp()
+    void OnTriggerExit2D(Collider2D col)
     {
-        if(GameManager.instance.diceInHand != null){
-            Debug.Log(GameManager.instance.diceInHand);
-            GameManager.instance.diceInHand.GetComponent<Drag>().Disapared();
-            Debug.Log("dé lacher");
+        if (col.tag == "Dice")
+        {
+            //TODO mettre un petit over sur les lanes 
+            Debug.Log("je suis sortie de la lane");
 
-        }
-        else{
-            Debug.Log("pas de dé en main");
+            GameManager.instance.laneSelected = null;
         }
     }
 
+    public void DiceRoll(GameObject dice){
+        GameManager.instance.laneSelected = null;
+        Debug.Log("dé lancer sur la lane");
+    }
 
 }
