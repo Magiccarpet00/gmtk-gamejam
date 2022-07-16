@@ -50,7 +50,15 @@ public class Drag : MonoBehaviour
     private void ReplaceDice()
     {
         onDrag = false;
-
         this.transform.position = new Vector3(diceSlot.position.x, diceSlot.position.y, 0f);
     }
+
+    //PROVISOIRE INVOCATION
+
+    public GameObject character;
+    public void Invock()
+    {
+        
+    }
+
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Lane : MonoBehaviour
 {
+    public Transform spawnPlayer;
+    public Transform spawnEnemy;
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Dice"){
