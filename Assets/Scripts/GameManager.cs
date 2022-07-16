@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] gameObjectLanes;
 
     public float timeLeft;
-    public float MAXIMUM_TIME = 60;
+    public const float MAXIMUM_TIME = 60;
+    public const float ENEMY_SPAWN_TICK = 5; // When does enemy appears
+
 
     public void Awake(){
         instance = this;
@@ -64,11 +66,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //timeLeft -= Time.deltaTime;
-        //if (timeLeft < 0)
-        //{
-        //    roundEnd();
-        //}
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            roundEnd();
+        }
     }
 
     private void roundStart()
