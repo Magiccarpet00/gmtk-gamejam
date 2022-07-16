@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Di : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class FaceEffect {
+    public int numberEffect;
+    public string effect;
 
-    // Update is called once per frame
-    void Update()
+    FaceEffect(int numberEffect, string effect)
     {
-        
+        this.numberEffect = numberEffect;
+        this.effect = effect;
     }
 }

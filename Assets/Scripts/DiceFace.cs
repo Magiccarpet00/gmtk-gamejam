@@ -2,24 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceFace : MonoBehaviour
+public class DiceFace
 {
-    private string soldierName;
+    public List<FaceEffect> effects;
 
-    public DiceFace(string soldierName)
+    public DiceFace()
     {
-        this.soldierName = soldierName;
+        effects = new List<FaceEffect>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

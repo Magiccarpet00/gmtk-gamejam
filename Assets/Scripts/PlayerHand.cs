@@ -7,7 +7,7 @@ public class PlayerHand
 {
     public List<Dice> hand; // Playable dices 
     public List<Dice> pool; // Dices that can be drew
-    public int MAX_HAND_SIZE = 4;
+    public const int MAX_HAND_SIZE = 4;
 
     public PlayerHand()
     {
@@ -34,6 +34,13 @@ public class PlayerHand
             pool.RemoveAt(index);
         }
         return picked;
+    }
+
+    public void PlayDice(Dice d)
+    {
+        d.Resolve();
+        pool.Add(d);
+        hand.Remove(d);
     }
 
     public void DebugInfo()
