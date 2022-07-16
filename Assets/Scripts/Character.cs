@@ -160,4 +160,9 @@ public class Character : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public IEnumerator GoAndGo(){
+        yield return new WaitForSeconds(2f);
+        moveSpeed = maxSpeed;
+    }
+
 }

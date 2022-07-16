@@ -15,7 +15,6 @@ public class Lane : MonoBehaviour
     {
         if (col.tag == "Dice"){
             //TODO mettre un petit over sur les lanes 
-            Debug.Log("je suis la lane");
 
             GameManager.instance.laneSelected = this.gameObject;
         }
@@ -25,16 +24,15 @@ public class Lane : MonoBehaviour
     {
         if (col.tag == "Dice")
         {
-            //TODO mettre un petit over sur les lanes 
-            Debug.Log("je suis sortie de la lane");
-
             GameManager.instance.laneSelected = null;
         }
     }
 
     public void DiceRoll(GameObject dice){
         GameManager.instance.laneSelected = null;
-        Debug.Log("dé lancer sur la lane");
+        
+
+        dice.GetComponent<Dice>().RollDice(this);
     }
 
 }

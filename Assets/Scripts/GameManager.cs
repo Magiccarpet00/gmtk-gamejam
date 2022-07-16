@@ -8,15 +8,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject diceInHand;
-    public DrawManager p;
 
     public GameObject laneSelected;
 
     public GameObject[] slotDice;
 
     public GameObject dicePrefab;
-
-    public GameObject[] gameObjectsPool;
 
     public GameObject[] gameObjectLanes;
 
@@ -29,23 +26,13 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void initDices()
-    {
-        for (int i = 0; i < gameObjectsPool.Length; i++)
-        {
-            p.pool.Add(gameObjectsPool[i].GetComponent<Dice>());
-            //faces.Add(i, listFaceEffect[i - 1].GetComponent<FaceEffect>());
-        }
-
-    }
-
     void Start()
     {
         //p = new DrawManager();
         //initDices();
 
         //p.Mulligan();
-        countScoreLane(gameObjectLanes[0]);
+        //countScoreLane(gameObjectLanes[0]);
         // main loop testing : dices should be threw, resolved, put back into the pool, 
         // and our player hand must take a dice from the pool
 
@@ -58,11 +45,6 @@ public class GameManager : MonoBehaviour
         
     }
     // all logic to resolve an effect based on description, location of the threw dice, ennemies...
-
-    private void Resolve(FaceEffect fe, int laneNumber)
-    {
-        //Debug.Log("Spawned " + fe.numberEffect + " " + fe.character + " on lane "+laneNumber);
-    }
 
     void Update()
     {
@@ -89,7 +71,7 @@ public class GameManager : MonoBehaviour
      * */
     private void countScore()
     {
-        Debug.Log("1 partout balle au centre");
+       // Debug.Log("1 partout balle au centre");
     }
     private void countScoreLane(GameObject lane)
     {

@@ -76,9 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDrag: 0
   sprite: {fileID: 6045895809646988141}
-  collider2d: {fileID: 0}
+  collider2d: {fileID: 6045895808919821581}
   diceSlot: {fileID: 0}
-  character: {fileID: 0}
 --- !u!50 &6045895808919821583
 Rigidbody2D:
   serializedVersion: 4
@@ -112,9 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b241cda087274e43bc83765efe38a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  variance: 0
-  cost: 0
+  listFaceEffect:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6045895809646988141
 GameObject:
   m_ObjectHideFlags: 0

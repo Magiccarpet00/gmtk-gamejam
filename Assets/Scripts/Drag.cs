@@ -11,6 +11,11 @@ public class Drag : MonoBehaviour
 
     public Transform diceSlot;
 
+    void Start(){
+        collider2d = gameObject.GetComponent<Collider2D>();
+        ReplaceDice();
+    }
+
     void Update()
     {
         if (onDrag)
@@ -23,42 +28,29 @@ public class Drag : MonoBehaviour
 
     void OnMouseUp()
     {
+        //TODO Control du coup en mana
         if(!onDrag)
         {
             GameManager.instance.diceInHand = this.gameObject;
             onDrag = true;
-            Debug.Log("j'ai un dé");
         }
         else
         {
             if(GameManager.instance.laneSelected != null){
                 GameManager.instance.laneSelected.GetComponent<Lane>().DiceRoll(this.gameObject);
-                Disapared();
+                ReplaceDice();
             }
             else
             {
                 ReplaceDice();
             }
-            Debug.Log("je lache le dé");
         }
-    }
-
-    public void Disapared(){
-        sprite.SetActive(false);
     }
 
     private void ReplaceDice()
     {
         onDrag = false;
         this.transform.position = new Vector3(diceSlot.position.x, diceSlot.position.y, 0f);
-    }
-
-    //PROVISOIRE INVOCATION
-
-    public GameObject character;
-    public void Invock()
-    {
-        
     }
 
 }
