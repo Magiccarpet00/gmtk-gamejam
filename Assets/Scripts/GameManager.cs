@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    //PROVISOIRE
     public GameObject diceInHand;
     public DrawManager p;
 
@@ -17,9 +16,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject dicePrefab;
 
-
     public GameObject[] gameObjectsPool;
 
+    public GameObject[] gameObjectLanes;
+
+    public float timeLeft;
+    public float MAXIMUM_TIME = 60;
 
     public void Awake(){
         instance = this;
@@ -37,19 +39,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        p = new DrawManager();
-        initDices();
+        //p = new DrawManager();
+        //initDices();
 
-        p.Mulligan();
-
+        //p.Mulligan();
+        countScoreLane(gameObjectLanes[0]);
         // main loop testing : dices should be threw, resolved, put back into the pool, 
         // and our player hand must take a dice from the pool
-        for (int i = 0; i < 3; i++)
-        {
-            //p.DebugInfo();
-            FaceEffect fe = p.Roll(p.hand[0]);
-            Resolve(fe,1);
-        }
+
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    p.DebugInfo();
+        //    FaceEffect fe = p.Roll(p.hand[0]);
+        //    Resolve(fe,1);
+        //}
+        
     }
     // all logic to resolve an effect based on description, location of the threw dice, ennemies...
 
@@ -60,6 +64,64 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //timeLeft -= Time.deltaTime;
+        //if (timeLeft < 0)
+        //{
+        //    roundEnd();
+        //}
+    }
+
+    private void roundStart()
+    {
+        throw new NotImplementedException();
+    }
+    private void roundEnd()
+    {
+        countScore();
+    }
+
+    /*
+     * When game end, we check for each lane how far the soldiers went.
+     * Kinda sucks if a soldier die just before reaching the end but that's what it take
+     * to be a dummy soldier
+     * */
+    private void countScore()
+    {
+        Debug.Log("1 partout balle au centre");
+    }
+    private void countScoreLane(GameObject lane)
+    {
+        float distanceMaxPlayer = 0;
+        float distanceMaxEnemy = 0;
+        float distanceSpawns = Vector3.Distance(
+            lane.GetComponent<Lane>().spawnEnemy.transform.position, 
+            lane.GetComponent<Lane>().spawnPlayer.transform.position
+        );
+        
+        Lane l = lane.GetComponent<Lane>();
+        foreach (GameObject playerCharGo in l.characterOnLane_player)
+        {
+            float distTmp = Vector3.Distance(l.spawnPlayer.position, playerCharGo.transform.position);
+            if (distTmp > distanceMaxPlayer)
+            {
+                distanceMaxPlayer = distTmp;
+            }
+        }
+        foreach (GameObject enemyCharGo in l.characterOnLane_enemy)
+        {
+            float distTmp = Vector3.Distance(l.spawnEnemy.position, enemyCharGo.transform.position);
+            if (distTmp > distanceMaxEnemy)
+            {
+                distanceMaxEnemy = distTmp;
+            }
+        }
+
+        float progPlayer = ( distanceMaxPlayer / distanceSpawns )*100;
+        float progEnemy = (distanceMaxEnemy / distanceSpawns) * 100;
+        /* TODO :
+         * What happens if a lane is fully conquered
+         * How does scoring exactly work (I guess we just sum each progression on each lanes and compare the totals)
+         */
         
     }
 }

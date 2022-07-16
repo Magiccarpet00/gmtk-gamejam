@@ -625,6 +625,10 @@ MonoBehaviour:
   - {fileID: 1089959567}
   - {fileID: 183446531}
   - {fileID: 1380465045}
+  gameObjectLanes:
+  - {fileID: 2082418707}
+  timeLeft: 0
+  MAXIMUM_TIME: 60
 --- !u!4 &707542033
 Transform:
   m_ObjectHideFlags: 0
