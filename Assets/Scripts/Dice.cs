@@ -17,6 +17,12 @@ public class Dice
         this.variance = variance;
         this.cost = cost;
         faces = new Dictionary<int, DiceFace>();
+
+        //Init empty faces
+        for (int i = 1; i < FACES_NUMBER + 1; i++)
+        {
+            faces.Add(i, new DiceFace());
+        }
     }
 
     // Add an effect on a dice face. There can be multiple effects on a face.
@@ -27,10 +33,12 @@ public class Dice
     }
 
     // When a dice is threw, resolve his effect by randomly choosing a face and check how it turns out
-    public DiceFace Resolve()
+    public DiceFace RollDice()
     {
         var random = new System.Random();
-        int faceIndex = random.Next(FACES_NUMBER);
+
+        int faceIndex = random.Next(FACES_NUMBER) + 1;
+        Debug.Log("Rolled an " + faceIndex + " !");
         DiceFace picked = faces[faceIndex];
         return picked;
     }
