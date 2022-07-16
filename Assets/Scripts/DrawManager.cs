@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerHand
+public class DrawManager
 {
     public List<Dice> hand; // Playable dices 
     public List<Dice> pool; // Dices that can be drew
     public const int MAX_HAND_SIZE = 4;
 
-    public PlayerHand()
+    public DrawManager()
     {
         hand = new List<Dice>();
         pool = new List<Dice>();
@@ -44,13 +44,13 @@ public class PlayerHand
      * Drawing a dice and had it to our player hand. 
      * Removing the played dice from our hand, and add it to the pool of dices.
      */
-    public DiceFace Roll(Dice d)
+    public FaceEffect Roll(Dice d)
     {
         String infos = "Throwing dice'" + d.name + "'\n";
         Debug.Log(infos);
-        DiceFace df = d.RollDice();
+        FaceEffect df = d.RollDice();
 
-        
+
         hand.Add(Draw(true));
         pool.Add(d);
         Debug.Log("Adding " + d.name + " to my pool");

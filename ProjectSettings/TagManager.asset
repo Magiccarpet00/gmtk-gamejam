@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lane
   - Dice
+  - Character
   layers:
   - Default
   - TransparentFX
