@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public float maxHP;
     public float damage;
     public float moveSpeed;
-    public float range; //Surmment leur collider
+    
     public bool isDead;
     public bool isFighting;
     public bool isInvoked;
@@ -22,6 +22,9 @@ public class Character : MonoBehaviour
 
     public float atkSpeed; //plus c'est bas, plus c'est rapide
     public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
+
+    public float atkSpeed_bullet; //plus c'est bas, plus c'est rapide
+    public float cd_atkSpeed_bullet;
 
     void Start()
     {
@@ -56,7 +59,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    void targetCharacter(Collider2D col)
+    public void targetCharacter(Collider2D col)
     {
         isFighting = true;
         target = col.gameObject;
@@ -84,6 +87,16 @@ public class Character : MonoBehaviour
         else{
             Walk();
         }
+
+        if (cd_atkSpeed_bullet > atkSpeed_bullet)
+        {
+            cd_atkSpeed_bullet = 0;
+            SpawnBullet();
+        }
+        else
+        {
+            cd_atkSpeed_bullet++;
+        }
     }
 
     public void DelayAttack()
@@ -97,6 +110,10 @@ public class Character : MonoBehaviour
 
     public virtual void Fight()
     {
+
+    }
+
+    public virtual void SpawnBullet(){
 
     }
 

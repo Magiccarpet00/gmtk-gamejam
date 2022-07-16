@@ -22,5 +22,8 @@ public class Melee : Character
             }
         }
     }
+    public override void SpawnBullet(){
+        base.SpawnBullet();
+    }
 
 }
