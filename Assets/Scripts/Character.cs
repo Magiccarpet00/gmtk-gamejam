@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
     public float atkSpeed; //plus c'est bas, plus c'est rapide
     public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
 
-
     void Start()
     {
         currentHP = maxHP;
@@ -46,18 +45,18 @@ public class Character : MonoBehaviour
             col.tag == "Character" &&
             col.gameObject.GetComponent<Character>().control.Equals("enemy"))
         {
-            colliderCharacter(col);
+            targetCharacter(col);
         }
 
         if (this.control.Equals("enemy") && 
             col.tag == "Character" && 
             col.gameObject.GetComponent<Character>().control.Equals("player"))
         {
-            colliderCharacter(col);
+            targetCharacter(col);
         }
     }
 
-    void colliderCharacter(Collider2D col)
+    void targetCharacter(Collider2D col)
     {
         isFighting = true;
         target = col.gameObject;
@@ -81,7 +80,6 @@ public class Character : MonoBehaviour
             else{
                 cd_atkSpeed++;
             }
-
         }
         else{
             Walk();
@@ -101,8 +99,6 @@ public class Character : MonoBehaviour
     {
 
     }
-
-
 
     public bool TakeDamage(float damage)
     {

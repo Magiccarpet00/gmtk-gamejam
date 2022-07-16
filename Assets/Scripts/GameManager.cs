@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         // and our player hand must take a dice from the pool
         for (int i = 0; i < 3; i++)
         {
-            p.DebugInfo();
+            //p.DebugInfo();
             FaceEffect fe = p.Roll(p.hand[0]);
             Resolve(fe,1);
         }
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void Resolve(FaceEffect fe, int laneNumber)
     {
-        Debug.Log("Spawned " + fe.numberEffect + " " + fe.character + " on lane "+laneNumber);
+        //Debug.Log("Spawned " + fe.numberEffect + " " + fe.character + " on lane "+laneNumber);
     }
 
     void Update()

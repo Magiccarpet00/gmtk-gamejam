@@ -33,7 +33,7 @@ public class DrawManager
         {
             pool.RemoveAt(index);
         }
-        Debug.Log("Drew: " + picked.diceName);
+        //Debug.Log("Drew: " + picked.diceName);
         return picked;
 
     }
@@ -47,15 +47,15 @@ public class DrawManager
     public FaceEffect Roll(Dice d)
     {
         String infos = "Throwing dice'" + d.diceName + "'\n";
-        Debug.Log(infos);
+        //Debug.Log(infos);
         FaceEffect df = d.RollDice();
 
 
         hand.Add(Draw(true));
         pool.Add(d);
-        Debug.Log("Adding " + d.diceName + " to my pool");
+        //Debug.Log("Adding " + d.diceName + " to my pool");
         hand.Remove(d);
-        Debug.Log("Removed " + d.diceName + " from my hand");
+        //Debug.Log("Removed " + d.diceName + " from my hand");
         return df;
     }
 
@@ -72,7 +72,7 @@ public class DrawManager
         {
             infos+=item.diceName+"\n";
         }
-        Debug.Log(infos);
+        //Debug.Log(infos);
     }
 }
 

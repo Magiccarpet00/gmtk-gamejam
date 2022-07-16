@@ -30,7 +30,7 @@ public class Dice : MonoBehaviour
         var random = new System.Random();
 
         int faceIndex = random.Next(FACES_NUMBER) + 1;
-        Debug.Log("Rolled an " + faceIndex + " !");
+        //Debug.Log("Rolled an " + faceIndex + " !");
         FaceEffect picked = faces[faceIndex];
         return picked;
     }
