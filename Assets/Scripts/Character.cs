@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public float maxHP;
     public float damage;
     public float moveSpeed;
-    public float range;
+    public float range; //Surmment leur collider
     public bool isDead;
     public bool isFighting;
     public bool isInvoked;
@@ -16,9 +16,17 @@ public class Character : MonoBehaviour
 
     public string control; //"player" or "enemy"
 
+    public GameObject target;
+    public Collider2D collider2d;
+    public GameObject sprite;
+
+    public float atkSpeed; //plus c'est bas, plus c'est rapide
+    public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
+
+
     void Start()
     {
-        
+        currentHP = maxHP;
     }
 
     public void Walk()
@@ -37,38 +45,81 @@ public class Character : MonoBehaviour
         if (this.control.Equals("player") &&
             col.tag == "Character" &&
             col.gameObject.GetComponent<Character>().control.Equals("enemy"))
-
-
         {
-            isFighting = true;
+            colliderCharacter(col);
         }
 
-        if (this.control.Equals("player") && 
+        if (this.control.Equals("enemy") && 
             col.tag == "Character" && 
             col.gameObject.GetComponent<Character>().control.Equals("player"))
         {
-            isFighting = true;
+            colliderCharacter(col);
         }
     }
 
+    void colliderCharacter(Collider2D col)
+    {
+        isFighting = true;
+        target = col.gameObject;
+    }
+
+
     // Quand un character est tué on désactuve sa boite de collision
-    void OnTriggerExit2D(Collider2D col){
+    void OnTriggerExit2D(Collider2D col)
+    {
         isFighting = false;
     }
 
     void Update()
     {
         if(isFighting){
-            Fight();
+
+            if (cd_atkSpeed > atkSpeed) {
+                cd_atkSpeed = 0;
+                Fight();
+            }
+            else{
+                cd_atkSpeed++;
+            }
+
         }
         else{
             Walk();
         }
     }
 
-    void Fight()
+    public void DelayAttack()
+    {
+        if (cd_atkSpeed < atkSpeed)
+        {
+            cd_atkSpeed++;
+        }
+    }
+
+
+    public virtual void Fight()
     {
 
+    }
+
+
+
+    public bool TakeDamage(float damage)
+    {
+        currentHP -= damage;
+
+        if(currentHP<=0){
+            this.Die();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Die()
+    {
+        sprite.SetActive(false); //Animation
+        collider2d.enabled = false;
     }
 
 }

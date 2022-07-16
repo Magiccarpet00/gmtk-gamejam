@@ -5,5 +5,4 @@ using UnityEngine;
 public class FaceEffect : MonoBehaviour{
     public int numberEffect;
     public GameObject character;
-
 }
