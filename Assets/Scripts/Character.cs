@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     public float currentHP;
     public float maxHP;
     public float damage;
+    public float maxSpeed;
     public float moveSpeed;
     
     public bool isDead;
@@ -23,12 +24,11 @@ public class Character : MonoBehaviour
     public float atkSpeed; //plus c'est bas, plus c'est rapide
     public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
 
-    public float atkSpeed_bullet; //plus c'est bas, plus c'est rapide
-    public float cd_atkSpeed_bullet;
 
     void Start()
     {
         currentHP = maxHP;
+        moveSpeed = maxSpeed;
     }
 
     public void Walk()
@@ -57,6 +57,20 @@ public class Character : MonoBehaviour
         {
             targetCharacter(col);
         }
+
+        if (this.control.Equals("player") &&
+            col.tag == "Character" &&
+            col.gameObject.GetComponent<Character>().control.Equals("player"))
+        {
+            moveSpeed = 0f;
+        }
+
+        if (this.control.Equals("enemy") &&
+            col.tag == "Character" &&
+            col.gameObject.GetComponent<Character>().control.Equals("enemy"))
+        {
+            moveSpeed = 0f;
+        }
     }
 
     public void targetCharacter(Collider2D col)
@@ -69,33 +83,31 @@ public class Character : MonoBehaviour
     // Quand un character est tué on désactuve sa boite de collision
     void OnTriggerExit2D(Collider2D col)
     {
+        moveSpeed = maxSpeed;
         isFighting = false;
     }
 
     void Update()
     {
-        if(isFighting){
+        if(!isDead){
 
-            if (cd_atkSpeed > atkSpeed) {
-                cd_atkSpeed = 0;
-                Fight();
-            }
-            else{
-                cd_atkSpeed++;
-            }
-        }
-        else{
-            Walk();
-        }
+            if (isFighting)
+            {
 
-        if (cd_atkSpeed_bullet > atkSpeed_bullet)
-        {
-            cd_atkSpeed_bullet = 0;
-            SpawnBullet();
-        }
-        else
-        {
-            cd_atkSpeed_bullet++;
+                if (cd_atkSpeed > atkSpeed)
+                {
+                    cd_atkSpeed = 0;
+                    Fight();
+                }
+                else
+                {
+                    cd_atkSpeed++;
+                }
+            }
+            else
+            {
+                Walk();
+            }
         }
     }
 
@@ -108,13 +120,21 @@ public class Character : MonoBehaviour
     }
 
 
-    public virtual void Fight()
+    public void Fight()
     {
+        if (target.GetComponent<Character>() == null)
+        {
+            Debug.Log("WARNING BUG");
+        }
+        else
+        {
+            bool targetKiled = target.GetComponent<Character>().TakeDamage(this.damage);
 
-    }
-
-    public virtual void SpawnBullet(){
-
+            if (targetKiled)
+            {
+                target = null;
+            }
+        }
     }
 
     public bool TakeDamage(float damage)
@@ -133,6 +153,11 @@ public class Character : MonoBehaviour
     {
         sprite.SetActive(false); //Animation
         collider2d.enabled = false;
+    }
+
+    public IEnumerator Delete(){
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
     }
 
 }
