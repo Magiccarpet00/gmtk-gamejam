@@ -191,5 +191,6 @@ MonoBehaviour:
   target: {fileID: 0}
   collider2d: {fileID: 3761191450692734720}
   sprite: {fileID: 3761191450026353747}
-  atkSpeed: 500
+  atkSpeed: 600
   cd_atkSpeed: 0
+  jesuisbeau: 

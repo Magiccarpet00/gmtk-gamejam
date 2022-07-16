@@ -11,8 +11,11 @@ public class Drag : MonoBehaviour
 
     public Transform diceSlot;
 
+    public Dice dice;
+
     void Start(){
         collider2d = gameObject.GetComponent<Collider2D>();
+        dice = gameObject.GetComponent<Dice>();
         ReplaceDice();
     }
 
@@ -36,12 +39,17 @@ public class Drag : MonoBehaviour
         }
         else
         {
-            if(GameManager.instance.laneSelected != null){
+            if(GameManager.instance.laneSelected != null &&
+               dice.manaCost <= GameManager.instance.mana)
+            {
                 GameManager.instance.laneSelected.GetComponent<Lane>().DiceRoll(this.gameObject);
+
+                GameManager.instance.mana -= dice.manaCost;
                 ReplaceDice();
             }
             else
             {
+                //ANNIMATION REFUS DE Dé
                 ReplaceDice();
             }
         }

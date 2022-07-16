@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 100
-  damage: 20
+  damage: 10
   maxSpeed: 0.3
   moveSpeed: 0
   isDead: 0
@@ -191,5 +191,6 @@ MonoBehaviour:
   target: {fileID: 0}
   collider2d: {fileID: 4336889335304042125}
   sprite: {fileID: 4336889333831327198}
-  atkSpeed: 500
+  atkSpeed: 600
   cd_atkSpeed: 0
+  jesuisbeau: 

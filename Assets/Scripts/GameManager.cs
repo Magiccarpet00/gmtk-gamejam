@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public const float MAXIMUM_TIME = 60;
     public const float ENEMY_SPAWN_TICK = 5; // When does enemy appears
 
+    public GameObject[] listEnemysBand;
+
+    public ManaBar manaBar;
+    public float mana; // entre 0 et 8
 
     public void Awake(){
         instance = this;
@@ -52,6 +56,16 @@ public class GameManager : MonoBehaviour
         if (timeLeft < 0)
         {
             roundEnd();
+        }
+
+        RegenMana();
+    }
+
+    void RegenMana()
+    {
+        if(mana < 8){
+            mana += 0.001f;
+            manaBar.SetMana(mana);
         }
     }
 

@@ -8,6 +8,8 @@ public class Dice : MonoBehaviour
     public const int FACES_NUMBER = 6;
     public GameObject[] listFaceEffect;
 
+    public float manaCost;
+
     // When a dice is threw, resolve his effect by randomly choosing a face and check how it turns out
     public void RollDice(Lane lane)
     {

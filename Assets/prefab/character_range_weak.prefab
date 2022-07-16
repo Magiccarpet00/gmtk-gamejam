@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 15
+  maxHP: 30
   damage: 10
   maxSpeed: 0.8
   moveSpeed: 0
@@ -193,3 +193,4 @@ MonoBehaviour:
   sprite: {fileID: 4224788602633492634}
   atkSpeed: 500
   cd_atkSpeed: 0
+  jesuisbeau: 

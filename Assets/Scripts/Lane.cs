@@ -30,9 +30,46 @@ public class Lane : MonoBehaviour
 
     public void DiceRoll(GameObject dice){
         GameManager.instance.laneSelected = null;
-        
-
         dice.GetComponent<Dice>().RollDice(this);
+    }
+
+    public void Start()
+    {
+        StartCoroutine(FirstSpwanEnemy());
+        StartCoroutine(SpwanEnemy());
+
+    }
+
+    public IEnumerator SpwanEnemy(){
+
+        float rngTime = Random.Range(10f, 20f);
+        yield return new WaitForSeconds(rngTime);
+
+        float rngSpawn = Random.Range(0f, 10f);
+
+        if (rngSpawn > 6f)
+        {
+            int rngEnemy = Random.Range(0, GameManager.instance.listEnemysBand.Length);
+            GameObject enemy = Instantiate(GameManager.instance.listEnemysBand[rngEnemy], spawnEnemy.position, Quaternion.identity);
+        }
+
+        StartCoroutine(SpwanEnemy());
+    }
+
+
+    public IEnumerator FirstSpwanEnemy()
+    {
+
+        float rngTime = Random.Range(5f, 10f);
+        yield return new WaitForSeconds(rngTime);
+
+        float rngSpawn = Random.Range(0f, 10f);
+
+        if(rngSpawn > 5f)
+        {
+            int rngEnemy = Random.Range(0, GameManager.instance.listEnemysBand.Length);
+            GameObject enemy = Instantiate(GameManager.instance.listEnemysBand[rngEnemy], spawnEnemy.position, Quaternion.identity);
+        }
     }
 
 }

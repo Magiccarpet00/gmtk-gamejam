@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
     public float atkSpeed; //plus c'est bas, plus c'est rapide
     public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
 
+    public string jesuisbeau;
+
 
     void Start()
     {
@@ -71,6 +73,7 @@ public class Character : MonoBehaviour
             col.gameObject.GetComponent<Character>().control.Equals("enemy"))
         {
             moveSpeed = 0f;
+            StartCoroutine(GoAndGo());
         }
     }
 
