@@ -63,6 +63,7 @@ public class Character : MonoBehaviour
             col.gameObject.GetComponent<Character>().control.Equals("player"))
         {
             moveSpeed = 0f;
+            StartCoroutine(GoAndGo());
         }
 
         if (this.control.Equals("enemy") &&

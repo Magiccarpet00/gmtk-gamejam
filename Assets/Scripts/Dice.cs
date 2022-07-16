@@ -15,10 +15,11 @@ public class Dice : MonoBehaviour
 
         int faceIndex = random.Next(FACES_NUMBER);
 
-        Debug.Log("jai fait un " + faceIndex+1);
-
         Instantiate(listFaceEffect[faceIndex], lane.spawnPlayer.transform.position, Quaternion.identity);
-        
+
+        faceIndex++;
+        Debug.Log("jai fait un " + faceIndex);
+
     }
 
 
