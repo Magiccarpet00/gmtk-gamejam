@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    //PROVISOIRE
     public GameObject diceInHand;
     public DrawManager p;
 
@@ -17,9 +16,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject dicePrefab;
 
-
     public GameObject[] gameObjectsPool;
 
+    public GameObject[] gameObjectLanes;
+
+    public float timeLeft;
+    public float MAXIMUM_TIME = 60;
 
     public void Awake(){
         instance = this;
@@ -60,6 +62,53 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            roundEnd();
+        }
+    }
+
+    private void roundStart()
+    {
+        throw new NotImplementedException();
+    }
+    private void roundEnd()
+    {
+        countScore();
+    }
+
+    /*
+     * When game end, we check for each lane how far the soldiers went.
+     * Kinda sucks if a soldier die just before reaching the end but that's what it take
+     * to be a dummy soldier
+     * */
+    private void countScore()
+    {
         
+        foreach (GameObject go in gameObjectLanes)
+        {
+            float distanceMaxPlayer = 0;
+            float distanceMaxEnemy = 0;
+            Lane l = go.GetComponent<Lane>();
+            foreach (GameObject playerCharGo in l.characterOnLane_player)
+            {
+                float distTmp = Vector3.Distance(l.spawnPlayer.position, playerCharGo.transform.position);
+                if (distTmp > distanceMaxPlayer)
+                {
+                    distanceMaxPlayer = distTmp;
+                }
+            }
+            foreach (GameObject enemyCharGo in l.characterOnLane_enemy)
+            {
+                float distTmp = Vector3.Distance(l.spawnEnemy.position, enemyCharGo.transform.position);
+                if (distTmp > distanceMaxEnemy)
+                {
+                    distanceMaxEnemy = distTmp;
+                }
+            }
+
+            /* Todo calcul au prorata des points selon la distance parcourue */
+        }
     }
 }
