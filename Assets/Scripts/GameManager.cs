@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         // for test purposes; all dices have equals faces. I'm a lazy boy :-)
         foreach (Dice item in p.pool)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < Dice.FACES_NUMBER + 1; i++)
             {
                 item.AddFace(i, new FaceEffect(i, "weak melee"));
             }
@@ -55,17 +55,18 @@ public class GameManager : MonoBehaviour
         initDices();
 
         p.Mulligan();
-        //p.DebugInfo();
-
-        DiceFace df = p.pool[0].Roll();
-        String infos = "Throwing dice'"+ p.pool[0].name+"'\n";
-        Debug.Log("infos");
-        foreach  (FaceEffect fe in df.effects)
+        
+        // main loop testing : dices should be threw, resolved, put back into the pool, 
+        // and our player hand must take a dice from the pool
+        for (int i = 0; i < 2; i++)
         {
-            Resolve(fe,1);
+            p.DebugInfo();
+            DiceFace df = p.Roll(p.hand[0]);            
+            foreach  (FaceEffect fe in df.effects)
+            {
+                Resolve(fe,1);
+            }
         }
-
-
     }
     // all logic to resolve an effect based on description, location of the threw dice, ennemies...
 

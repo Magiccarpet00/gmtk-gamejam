@@ -33,14 +33,30 @@ public class PlayerHand
         {
             pool.RemoveAt(index);
         }
+        Debug.Log("Drew: " + picked.name);
         return picked;
+
     }
 
-    public void Roll(Dice d)
+    /* 
+     * Roll loop :
+     * Rolling the dices, and resolving it's effect
+     * Drawing a dice and had it to our player hand. 
+     * Removing the played dice from our hand, and add it to the pool of dices.
+     */
+    public DiceFace Roll(Dice d)
     {
-        d.Roll();
+        String infos = "Throwing dice'" + d.name + "'\n";
+        Debug.Log(infos);
+        DiceFace df = d.RollDice();
+
+        
+        hand.Add(Draw(true));
         pool.Add(d);
+        Debug.Log("Adding " + d.name + " to my pool");
         hand.Remove(d);
+        Debug.Log("Removed " + d.name + " from my hand");
+        return df;
     }
 
     public void DebugInfo()
