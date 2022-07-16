@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject diceInHand;
     public PlayerHand p;
 
+    public GameObject laneSelected;
+
+
+
     public void Awake(){
         instance = this;
     }
