@@ -39,6 +39,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 527784624338354560}
     m_Modifications:
+    - target: {fileID: 26118916849892246, guid: b5058c3b685236c419d8af96aef2c769, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26118916849892246, guid: b5058c3b685236c419d8af96aef2c769, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 26118916849892246, guid: b5058c3b685236c419d8af96aef2c769, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 204966609
+      objectReference: {fileID: 0}
     - target: {fileID: 4336889335304042120, guid: b5058c3b685236c419d8af96aef2c769, type: 3}
       propertyPath: m_Name
       value: character_melee_strong

@@ -34,22 +34,32 @@ public class GameManager : MonoBehaviour
     public Vector2 offsetEffectDice = new Vector2(0.79f, 0.739f);
     public GameObject diceEffect;
 
+    //Layer
+    public int layer;
+
+    //OFFSET SPRITE
+    public float offSet_replace;
+
 
     public void Awake(){
         instance = this;
     }
 
-    void Update()
-    {
-        RegenMana();
+    void Start(){
+        StartCoroutine(RegenMana());
     }
 
-    void RegenMana()
+    public IEnumerator RegenMana()
     {
-        if(mana < 8){
-            mana += 0.001f;
+
+        yield return new WaitForSeconds(0.01f);
+
+        if (mana < 8){
+            mana += 0.005f;
             manaBar.SetMana(mana);
         }
+
+        StartCoroutine(RegenMana());
     }
 
     public void AddScrore(int _score){

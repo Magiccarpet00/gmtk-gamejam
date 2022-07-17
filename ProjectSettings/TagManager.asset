@@ -41,11 +41,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: fond
+    uniqueID: 2297296747
+    locked: 0
+  - name: tapis
+    uniqueID: 1323447551
+    locked: 0
   - name: Pillier
     uniqueID: 3296745751
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: character
+    uniqueID: 204966609
     locked: 0
   - name: dice
     uniqueID: 2712203237

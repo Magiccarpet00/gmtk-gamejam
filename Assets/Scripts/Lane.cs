@@ -11,12 +11,16 @@ public class Lane : MonoBehaviour
     public List<GameObject> characterOnLane_player;
     public List<GameObject> characterOnLane_enemy;
 
-    
+    public SpriteRenderer spriteRenderer;
+    public Sprite spriteOver;
+    public Sprite sprite;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Dice"){
-            //TODO mettre un petit over sur les lanes 
+            //TODO mettre un petit over sur les lanes
+
+            spriteRenderer.sprite = spriteOver;
 
             GameManager.instance.laneSelected = this.gameObject;
         }
@@ -26,6 +30,7 @@ public class Lane : MonoBehaviour
     {
         if (col.tag == "Dice")
         {
+            spriteRenderer.sprite = sprite;
             GameManager.instance.laneSelected = null;
         }
     }

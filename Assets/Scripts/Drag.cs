@@ -13,10 +13,13 @@ public class Drag : MonoBehaviour
 
     public Dice dice;
 
+
+    public Animator animatorDice;
+
     void Start(){
         collider2d = gameObject.GetComponent<Collider2D>();
         dice = gameObject.GetComponent<Dice>();
-        ReplaceDice();
+        StartCoroutine(ReplaceDice(0f));
     }
 
     void Update()
@@ -45,20 +48,28 @@ public class Drag : MonoBehaviour
                 GameManager.instance.laneSelected.GetComponent<Lane>().DiceRoll(this.gameObject);
 
                 GameManager.instance.mana -= dice.manaCost;
-                ReplaceDice();
+                StartCoroutine(ReplaceDice(1.5f));
             }
             else
             {
-                //ANNIMATION REFUS DE Dé
-                ReplaceDice();
+                animatorDice.SetTrigger("nomana");
+                Debug.Log("hello");
+                StartCoroutine(ReplaceDice(0f));
             }
         }
     }
 
-    private void ReplaceDice()
+    private IEnumerator ReplaceDice(float time)
     {
+        
+        sprite.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        
         onDrag = false;
-        this.transform.position = new Vector3(diceSlot.position.x, diceSlot.position.y, 0f);
+        this.transform.position = new Vector3(diceSlot.position.x, diceSlot.position.y + GameManager.instance.offSet_replace , 0f);
+        yield return new WaitForSeconds(time);
+
+        sprite.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+
     }
 
 }

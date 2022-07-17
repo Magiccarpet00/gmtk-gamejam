@@ -6,6 +6,9 @@ public class ScoreZone : MonoBehaviour
 {
     public string zone;
 
+    public AudioClip[] playerWinSound;
+    public AudioClip[] enemyWinSound;
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (zone.Equals("enemy") &&
@@ -13,6 +16,9 @@ public class ScoreZone : MonoBehaviour
             col.gameObject.GetComponent<Character>().control.Equals("enemy"))
         {
             GameManager.instance.AddScrore(-10);
+
+            int rng = Random.Range(0, 3);
+            AudioManager.instance.PlayClipAt(enemyWinSound[rng], transform.position);
         }
 
         if (zone.Equals("player") &&
@@ -20,6 +26,8 @@ public class ScoreZone : MonoBehaviour
             col.gameObject.GetComponent<Character>().control.Equals("player"))
         {
             GameManager.instance.AddScrore(10);
+            int rng = Random.Range(0, 3);
+            AudioManager.instance.PlayClipAt(playerWinSound[rng], transform.position);
         }
     }
 

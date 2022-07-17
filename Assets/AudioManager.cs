@@ -22,6 +22,12 @@ public class AudioManager : MonoBehaviour
         audioSource.Play();
     }
 
+    void Update(){
+        if(!audioSource.isPlaying){
+            audioSource.Play();
+        }
+    }
+
     public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
     {
         GameObject tempGO = new GameObject("TempAudio");

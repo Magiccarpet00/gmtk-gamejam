@@ -132,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3761191450692734725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.23, y: -1.83, z: -0.1372743}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -212,6 +212,6 @@ MonoBehaviour:
   target: {fileID: 0}
   collider2d: {fileID: 3761191450692734720}
   sprite: {fileID: 3761191450026353747}
-  atkSpeed: 600
+  atkSpeed: 400
   cd_atkSpeed: 0
   animator: {fileID: 0}

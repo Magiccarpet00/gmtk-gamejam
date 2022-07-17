@@ -13,14 +13,15 @@ public class Dice : MonoBehaviour
     public AudioClip sound_succes;
     public AudioClip sound_failed;
 
+    public Animator animatorPillier;
+
     // When a dice is threw, resolve his effect by randomly choosing a face and check how it turns out
     public void RollDice(Lane lane)
     {
-        
-
         Vector2 offSett = GameManager.instance.offsetEffectDice;
         Instantiate(GameManager.instance.diceEffect, new Vector3(lane.spawnPlayer.transform.position.x + offSett.x, lane.spawnPlayer.transform.position.y + offSett.y), Quaternion.identity);
-        
+
+        animatorPillier.SetTrigger("roll");
 
         StartCoroutine(RollDiceDelay(lane));
 
