@@ -11,6 +11,8 @@ public class Lane : MonoBehaviour
     public List<GameObject> characterOnLane_player;
     public List<GameObject> characterOnLane_enemy;
 
+    
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Dice"){

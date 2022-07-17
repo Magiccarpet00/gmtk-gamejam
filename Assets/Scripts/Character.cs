@@ -24,13 +24,20 @@ public class Character : MonoBehaviour
     public float atkSpeed; //plus c'est bas, plus c'est rapide
     public float cd_atkSpeed; // une sorte de sablier qui secoule apres chaque coup
 
-    public string jesuisbeau;
-
+    public Animator animator;
 
     void Start()
     {
         currentHP = maxHP;
         moveSpeed = maxSpeed;
+        animator = GetComponentInChildren<Animator>();
+
+        //enemy
+        if(control.Equals("enemy")){
+            SpriteRenderer spriteRenderer = sprite.GetComponent<SpriteRenderer>();
+            spriteRenderer.flipX = true;
+            spriteRenderer.color = new Color(0.8147681f, 1f, 0f, 1f);
+        }
     }
 
     public void Walk()
@@ -133,6 +140,7 @@ public class Character : MonoBehaviour
         else
         {
             bool targetKiled = target.GetComponent<Character>().TakeDamage(this.damage);
+            animator.SetTrigger("atk");
 
             if (targetKiled)
             {
@@ -155,7 +163,7 @@ public class Character : MonoBehaviour
 
     public void Die()
     {
-        sprite.SetActive(false); //Animation
+        animator.SetTrigger("die");
         collider2d.enabled = false;
     }
 

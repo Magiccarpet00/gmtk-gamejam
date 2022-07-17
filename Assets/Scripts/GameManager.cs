@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     public int score;
     public TextMeshProUGUI txtScore;
 
+    //DICE ROOL
+    public Vector2 offsetEffectDice = new Vector2(0.79f, 0.739f);
+    public GameObject diceEffect;
+
 
     public void Awake(){
         instance = this;
